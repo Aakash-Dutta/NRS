@@ -1,32 +1,29 @@
-let nodes = new Array(20);
-let c;
+let nodes = [];
+let edges = [];
 
-let circleX = 100;
-let circleY = 100;
-let diameter = 150;
 function setup() {
   createCanvas(720, 480);
+
+  // Add Event listener to attach event handler to specified element
+  document.getElementById("addNodeBtn").addEventListener("click", addNode);
 }
 
 function draw() {
   background(230);
 
-  //next step. how do i know if the mouse is over that circle?
-
-  if (dist(circleX, circleY, mouseX, mouseY) < diameter / 2 && mouseIsPressed) {
-    circleX = mouseX;
-    circleY = mouseY;
+  // iteratively draw nodes
+  for (let i = 0; i < nodes.length; i++) {
+    stroke(0);
+    strokeWeight(2);
+    fill(0);
+    ellipse(nodes[i][0], nodes[i][1], 50, 50);
+    fill(255);
+    text(i, nodes[i][0], nodes[i][1]);
   }
+}
 
-  ellipse(circleX, circleY, diameter, diameter);
-  text("HEY", circleX, circleY);
-
-  //   for (let i = 0; i < nodes.length; i++) {
-  //     circle(50 + i, 50 + i, 20);
-  //     text(i, 50 + i, 50 + i);
-  //   }
-
-  function addNode() {
-    // push item into array
-  }
+function addNode() {
+  // push item into array: nodes
+  nodes.push([50, 50]);
+  console.log(nodes);
 }
