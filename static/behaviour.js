@@ -22,6 +22,7 @@ function setup() {
   document
     .getElementById("addEdgeBtn")
     .addEventListener("click", addEdgeViewer);
+  document.getElementById("clear").addEventListener("click", clearCanvas);
 }
 
 function draw() {
@@ -145,11 +146,17 @@ function addNode() {
   nodes.push({ x: x, y: y });
 }
 
+/**
+ * This function loads the form for edge submission
+ * and sets paramters for max values that can be taken as inputs
+ * also reset preloaded values to " "
+ */
 function addEdgeViewer() {
   if (nodes.length < 2) {
     alert("Only one node. Cannot add edge!!");
   } else {
     document.getElementById("myForm").style.display = "block";
+
     document.getElementById("startNode").setAttribute("max", nodes.length - 1);
     document.getElementById("endNode").setAttribute("max", nodes.length - 1);
 
@@ -159,6 +166,8 @@ function addEdgeViewer() {
   }
 }
 
+// validates whether start is equall to end or not
+// if validates passes to addEdge()
 function validateForm() {
   let start = document.getElementById("startNode").value;
   let end = document.getElementById("endNode").value;
@@ -172,6 +181,10 @@ function validateForm() {
   addEdge(start, end, weight);
 }
 
+/**
+ * Adds new egde between nodes
+ * or updates the edge's weight between the nodes if already present
+ */
 function addEdge(start, end, weight) {
   let flag = 0;
   for (let i = 0; i < edges.length; i++) {
@@ -188,6 +201,16 @@ function addEdge(start, end, weight) {
   }
 
   document.getElementById("myForm").style.display = "none";
+}
+
+/**
+ * Removes items from nodes and edges, also clears canvas
+ */
+function clearCanvas() {
+  nodes = [];
+  edges = [];
+  clear();
+  background(230); // additional clear
 }
 
 // bool condition for algo running or not , to stop user from adding nodes during execution
