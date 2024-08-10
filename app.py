@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from flask_socketio import SocketIO, send
+from flask_socketio import SocketIO, send, emit
 from Algorithms import *
 
 
@@ -30,22 +30,6 @@ def handle_dijkstra(data):
         weight = edge["weight"]
         G.add_edge(str(start), str(end), weight)
     print(G.shortest_path("0","1"))
-
-
-
-# @app.route('/process-dijkstra', methods=['POST'])
-# def process_dijkstra():
-#     nodes, edges = request.json['nodes'], request.json['edges']
-#     bool(error)
-
-#     for i in range(len(edges)):
-#         if(edges[i]["weight"] < 0):
-#             error = True
-
-#     if(error is True):
-#         return jsonify({'result': "Error"})
-#     return jsonify({'result': "EHlo"})
-
 
 if __name__ == '__main__':
     socketio.run(app, allow_unsafe_werkzeug=True)

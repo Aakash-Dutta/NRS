@@ -1,3 +1,5 @@
+from flask_socketio import emit
+
 class Graph:
     def __init__(self, graph: dict ={}):
         self.graph = graph # A dictionary for the adjaceny list
@@ -6,6 +8,9 @@ class Graph:
         if node1 not in self.graph: #Check if the node is already added
             self.graph[node1] ={} # If not, create the node
         self.graph[node1][node2] = weight #Else, add a connection to its neighbour
+
+        if node2 not in self.graph:
+            self.graph[node2]={}
 
     def shortest_path(self, source:str, target:str):
         _, predecessors = Dijkstra(self.graph, source)
@@ -88,7 +93,6 @@ def Dijkstra(graph, source):
         visited.add(current_node)
 
         for neighbor, weight in graph[current_node].items():
-            print(type(neighbor))
             distance = current_distance + weight
 
             # Relaxation
@@ -96,20 +100,7 @@ def Dijkstra(graph, source):
                 distances[neighbor] = distance
                 pq.insert(neighbor, distance)
                 predecessors[neighbor] = current_node
+            emit('server',"se")
+    
     return distances, predecessors
         
-
-
-
-# graph = {
-#    "0": {"1": 12},
-#    "1": {"2":1},
-#    "2": {"0":13}
-# }
-# G = Graph(graph=graph)
-# print(G.shortest_path("0","2"))
-
-
-
-
-

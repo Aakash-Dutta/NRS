@@ -228,20 +228,11 @@ function runDijkstra() {
   });
 
   socket.emit("process_dijkstra", edges);
-}
 
-// function runDijkstra() {
-//   fetch("/process-dijkstra", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({ nodes: nodes, edges: edges }),
-//   })
-//     .then((response) => response.text())
-//     .catch((error) => {
-//       console.error("Error: ", error);
-//     });
-// }
+  // event sent by server
+  socket.on("server", function (msg) {
+    console.log(msg);
+  });
+}
 
 // bool condition for algo running or not , to stop user from adding nodes during execution
