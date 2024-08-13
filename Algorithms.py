@@ -1,4 +1,4 @@
-from flask_socketio import emit
+from flask_socketio import emit, socketio
 
 class Graph:
     def __init__(self, graph: dict ={}):
@@ -11,6 +11,7 @@ class Graph:
 
         if node2 not in self.graph:
             self.graph[node2]={}
+        self.graph[node2][node1] = weight
 
     def shortest_path(self, source:str, target:str):
         _, predecessors = Dijkstra(self.graph, source)
@@ -100,7 +101,8 @@ def Dijkstra(graph, source):
                 distances[neighbor] = distance
                 pq.insert(neighbor, distance)
                 predecessors[neighbor] = current_node
-            emit('server',"se")
-    
+                print(distances, predecessors)
+                
+    emit('server',{'dist':distances, 'pre':predecessors})
     return distances, predecessors
         

@@ -6,6 +6,8 @@
 let nodes = [];
 let edges = [];
 let draggingNode = null;
+let socket;
+let table;
 
 function setup() {
   let canvas = createCanvas(720, 480); // global variable initiated: width = 720; height = 480;
@@ -144,7 +146,8 @@ function addNode() {
     }
   }
 
-  nodes.push({ x: x, y: y });
+  var valueOfNode = nodes.length;
+  nodes.push({ x: x, y: y, name: valueOfNode });
 }
 
 /**
@@ -216,22 +219,57 @@ function clearCanvas() {
   edges = [];
   clear();
   background(230); // additional clear
+
+  if (socket) {
+    socket.close();
+  }
+}
+
+function generateTable(source) {
+  console.log(source);
+  table = "<tr><th>Vertex</th><th>Distance</th><th>Predecessor</th></tr>";
+  nodes.forEach((node) => {
+    if (node.name == source) {
+      table += `<tr><td>${node.name}</td><td>0</td><td>nil</td></tr>`;
+    } else {
+      table += `<tr><td>${node.name}</td><td>inf</td><td>nil</td></tr>`;
+    }
+  });
+  document.getElementById("algorithmTable").innerHTML = table;
 }
 
 function runDijkstra() {
-  var socket = io();
+  document.getElementById("stepAlgorithm").style.display = "block";
+  let source = parseInt(prompt("Enter source node"));
+  let destination = parseInt(prompt("Enter destination node"));
+  generateTable(source);
+
+  socket = io();
   socket.on("connect", function () {
     console.log("Connected to server");
   });
-  socket.on("disconnect", function () {
-    console.log("Disconnected from server");
+  socket.emit("process_dijkstra", {
+    edges: edges,
+    source: source,
+    destination: destination,
   });
-
-  socket.emit("process_dijkstra", edges);
 
   // event sent by server
   socket.on("server", function (msg) {
     console.log(msg);
+    console.log(msg.dist);
+    console.log(msg.pre);
+
+    table = "<tr><th>Vertex</th><th>Distance</th><th>Predecessor</th></tr>";
+    for (let i = 0; i < nodes.length; i++) {
+      table += `<tr><td>${i}</td><td>${msg.dist[i]}</td><td>${msg.pre[i]}</td></tr>`;
+      console.log(table);
+    }
+    document.getElementById("algorithmTable").innerHTML = table;
+  });
+
+  socket.on("disconnect", function () {
+    console.log("Disconnected from server");
   });
 }
 
