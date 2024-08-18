@@ -26,6 +26,9 @@ function setup() {
     .addEventListener("click", addEdgeViewer);
   document.getElementById("clear").addEventListener("click", clearCanvas);
   document.getElementById("dijkstra").addEventListener("click", runDijkstra);
+  document
+    .getElementById("stepAlgorithm")
+    .addEventListener("click", stepUpdater);
 }
 
 function draw() {
@@ -263,7 +266,6 @@ function runDijkstra() {
     table = "<tr><th>Vertex</th><th>Distance</th><th>Predecessor</th></tr>";
     for (let i = 0; i < nodes.length; i++) {
       table += `<tr><td>${i}</td><td>${msg.dist[i]}</td><td>${msg.pre[i]}</td></tr>`;
-      console.log(table);
     }
     document.getElementById("algorithmTable").innerHTML = table;
   });
@@ -271,6 +273,12 @@ function runDijkstra() {
   socket.on("disconnect", function () {
     console.log("Disconnected from server");
   });
+}
+
+function stepUpdater() {
+  console.log("step called");
+  socket.emit("step");
+  console.log("DOne something in step");
 }
 
 // bool condition for algo running or not , to stop user from adding nodes during execution
