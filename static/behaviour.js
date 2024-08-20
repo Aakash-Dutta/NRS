@@ -224,6 +224,7 @@ function clearCanvas() {
   background(230); // additional clear
 
   if (socket) {
+    socket.emit("clearValues");
     socket.close();
   }
 }
