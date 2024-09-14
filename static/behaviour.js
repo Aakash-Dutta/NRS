@@ -311,6 +311,7 @@ function exitSimulation() {
   currentNode = null;
   neighbourNode = null;
   shortestPath = [];
+  trackBellmanFordCosts = null;
 
   nodes.forEach((node) => ((node.visited = false), (node.finalpath = false)));
   edges.forEach((edge) => (edge.visited = false));
