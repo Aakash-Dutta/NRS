@@ -1,15 +1,30 @@
 function runDijkstra() {
   let source;
   let destination;
-  do {
-    source = parseInt(prompt(`Enter source node: 0-${nodes.length - 1}`));
-  } while (isNaN(source));
 
   do {
-    destination = parseInt(
-      prompt(`Enter destination node: 0-${nodes.length - 1}`)
-    );
-  } while (isNaN(destination));
+    source = prompt(`Enter source node: 0-${nodes.length - 1}`);
+    if (source === null) {
+      console.log("Prompt was cancelled.");
+      socket.close();
+      return 1;
+    }
+    source = parseInt(source);
+  } while (isNaN(source) || source < 0 || source > nodes.length - 1);
+
+  do {
+    destination = prompt(`Enter destination node: 0-${nodes.length - 1}`);
+    if (destination === null) {
+      console.log("Prompt was cancelled.");
+      socket.close();
+      return 1;
+    }
+    destination = parseInt(destination);
+  } while (
+    isNaN(destination) ||
+    destination < 0 ||
+    destination > nodes.length - 1
+  );
 
   generateTable(source);
 
@@ -20,4 +35,8 @@ function runDijkstra() {
     state: stateChoosen,
   });
   dateInital = new Date();
+
+  document.getElementById(
+    "source-destination"
+  ).innerHTML = `Source : ${source}, Destination: ${destination}`;
 }

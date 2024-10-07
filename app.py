@@ -12,15 +12,15 @@ path = []
 
 @app.route("/")
 def index():
-    return render_template('index.html', page_name='index')
+    return render_template('index.html', page_name='index' , active_page='index')
 
 @app.route("/tutorial")
 def tutorial():
-    return render_template("tutorial.html")
+    return render_template("tutorial.html", active_page='tutorial')
 
 @app.route("/aboutus")
 def aboutus():
-    return render_template("aboutus.html")
+    return render_template("aboutus.html", active_page='aboutus')
 
 @socketio.on('connect')
 def handle_connect():

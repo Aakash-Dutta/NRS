@@ -1,18 +1,7 @@
 function runningAlgorithm(whichalgo) {
+  var r_value; // return type for algorithm to check whether the prompt was cancelled
   document.getElementById("myForm").style.display = "none";
   document.getElementById("err").innerHTML = "";
-
-  document.getElementById("stepAlgorithm").style.display = "inline";
-  document.getElementById("exitAlgorithm").style.display = "inline";
-  disableChild = document
-    .getElementById("upperButtons")
-    .children.forEach((child) => {
-      child.setAttribute("disabled", "");
-    });
-
-  document.getElementById("stateDenoterButton").children.forEach((child) => {
-    child.setAttribute("disabled", "");
-  });
 
   // algo variable initilized as connection is properly validated
   algo = "Running";
@@ -23,9 +12,25 @@ function runningAlgorithm(whichalgo) {
   });
 
   if (whichalgo == "Dijkstra") {
-    runDijkstra();
+    r_value = runDijkstra();
   } else if (whichalgo == "Bellman_Ford") {
-    runBellmanFord();
+    r_value = runBellmanFord();
+  }
+
+  if (r_value != 1) {
+    document.getElementById("stepAlgorithm").style.display = "inline";
+    document.getElementById("exitAlgorithm").style.display = "inline";
+    disableChild = document
+      .getElementById("upperButtons")
+      .children.forEach((child) => {
+        child.setAttribute("disabled", "");
+      });
+
+    document.getElementById("stateDenoterButton").children.forEach((child) => {
+      child.setAttribute("disabled", "");
+    });
+
+    document.getElementById("additional-info").style.display = "block";
   }
 
   socket.on("server", function (msg) {

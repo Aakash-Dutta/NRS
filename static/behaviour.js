@@ -482,6 +482,7 @@ function exitSimulation() {
     .children.forEach((child) => child.removeAttribute("disabled"));
   document.getElementById("stepAlgorithm").style.display = "none";
   document.getElementById("exitAlgorithm").style.display = "none";
+  document.getElementById("additional-info").style.display = "none";
 
   // reset values of variables
   algo = "Not Running";

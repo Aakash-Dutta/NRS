@@ -38,3 +38,22 @@ a,
 .backColor {
   background-color: var(--third);
 }
+
+#additional-info {
+  display: none;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+.wrapper {
+  min-height: 94vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-block {
+  flex: 1;
+}
