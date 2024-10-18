@@ -14,6 +14,10 @@ path = []
 def index():
     return render_template('index.html', page_name='index' , active_page='index')
 
+@app.route("/lander")
+def home():
+    return render_template('lander.html', page_name='lander' , active_page='lander')
+
 @app.route("/tutorial")
 def tutorial():
     return render_template("tutorial.html", active_page='tutorial')

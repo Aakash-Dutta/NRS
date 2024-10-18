@@ -17,6 +17,10 @@ function runningAlgorithm(whichalgo) {
     r_value = runBellmanFord();
   }
 
+  if (r_value == 1) {
+    algo = "Not Running";
+  }
+
   if (r_value != 1) {
     document.getElementById("stepAlgorithm").style.display = "inline";
     document.getElementById("exitAlgorithm").style.display = "inline";

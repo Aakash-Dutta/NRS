@@ -1,0 +1,169 @@
+{% extends "base.html" %} {% block title %} Home - Network Routing Simulator {%
+endblock %} {% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <div
+      class="col-sm-12 col-md-12 col-lg-8 mx-auto border text-center p-3 shadow"
+    >
+      <h1>Network Routing Simulator</h1>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-sm-12 col-md-12 col-lg-8 mx-auto border p-3 shadow">
+      <div class="row">
+        <h3 class="text-center"></h3>
+      </div>
+      <div class="row">
+        <h5 class="text-center">
+          Network Routing Simulator is a routing tool aimed to visualize
+          Dijkstra and Bellman-Ford routing algorithm. It will provide an
+          environment where users can input custom network configurations (nodes
+          and edges), adjust link cost and then run the algorithms. The tool
+          will dynamically show the process that occurs throughout the algorithm
+          step by step.
+          <hr />
+        </h5>
+      </div>
+      <div class="row mt-5">
+        <div class="col p-3">
+          <h4>Description of Algorithm</h4>
+          <p>
+            The single-source shortest path algorithms used in this proposed
+            system uses the technique of relaxation. For each vertex v ∈ V, the
+            single-source shortest paths algorithms maintain an attribute
+            v.d(shortest-path estimate), which is an upper bound on the weight
+            of a shortest path from source s to v.
+          </p>
+
+          <div class="col-lg-5 col-md-8 col-sm-8 mx-auto">
+            <figure class="figure text-center">
+              <img
+                src="{{url_for('static', filename='assets/algo_initialize_pseudocode.png')}}"
+                class="img-fluid mx-auto d-block"
+              />
+              <figcaption class="fst-italic">
+                Initialization of shortest-path estimate
+              </figcaption>
+            </figure>
+          </div>
+          <p>
+            The process of relaxing an edge (u,v) consists of testing whether
+            going through vertex u improves the shortest path to vertex v found
+            so far and, if so, updating v.d and v.π.
+          </p>
+          <div class="col-lg-5 col-md-8 col-sm-8 mx-auto">
+            <figure class="figure text-center">
+              <img
+                src="{{url_for('static', filename='assets/relax_pseudocode.png')}}"
+                class="img-fluid mx-auto d-block"
+              />
+              <figcaption class="fst-italic">
+                Relaxing an edge (u,v) with weight w
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col p-3">
+          <h4>Dijkstra's Algorithm</h4>
+          <p>
+            Dijkstra’s algorithm solves the single-source shortest-paths problem
+            on a graph G= (V, E), but it requires nonnegative weights on all
+            edges: w (u, v) ≥ 0 for each edge (u, v) ∈ E. Dijkstra’s algorithm
+            maintains a set S of vertices whose final shortest-path weights from
+            the source s have already been determined. The algorithm repeatedly
+            selects the vertex u ∈ V - S with the minimum shortest-path
+            estimate, adds u into S, and relaxes all edges leaving u. The
+            procedure DIJKSTRA uses a min-priority queue Q of vertices, keyed by
+            their d values.
+          </p>
+          <div class="col-lg-5 col-md-8 col-sm-8 mx-auto">
+            <figure class="figure text-center">
+              <img
+                src="{{url_for('static', filename='assets/Dijkstra_Algorithm.png')}}"
+                class="img-fluid mx-auto d-block"
+              />
+              <figcaption class="fst-italic">
+                Dijkstra's Algorithm PseudoCode
+              </figcaption>
+            </figure>
+          </div>
+          <p>
+            The final path of an example network considering Dijkstra's
+            Algorithm.
+          </p>
+          <div class="col-lg-5 col-md-7 col-sm-8 mx-auto">
+            <figure class="figure text-center">
+              <img
+                src="{{url_for('static', filename='assets/dijkstra_final.png')}}"
+                class="img-fluid mx-auto d-block"
+              />
+              <figcaption class="fst-italic">
+                Dijkstra's Algorithm for Final Path
+              </figcaption>
+            </figure>
+          </div>
+          <p>
+            <mark>
+              You can checkout the simulator through the <a href="/">editor</a>.
+              For further information on how to use the tool checkout out
+              <a href="/tutorial">tutorial</a>.
+            </mark>
+          </p>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col p-3">
+          <h4>Bellman-Ford Algorithm</h4>
+          <p>
+            The Bellman-Ford algorithm solves the single-source shortest-paths
+            problem in the general case in which edge weights may be negative.
+            The procedure BELLMAN-FORD relaxes edges, progressively decreasing
+            an estimate v.d on the weight of a shortest path from the source s
+            to each vertex v ∈ V until it achieves the actual shortest-path
+            weight δ (s,v). The algorithm returns TRUE if and only if the graph
+            contains no negative-weight cycles that are reachable from the
+            source.
+          </p>
+          <div class="col-lg-5 col-md-8 col-sm-8 mx-auto">
+            <figure class="figure text-center">
+              <img
+                src="{{url_for('static', filename='assets/Bellman_Ford_algorithm.png')}}"
+                class="img-fluid mx-auto d-block"
+              />
+              <figcaption class="fst-italic">
+                Bellman-Ford Algorithm PseudoCode
+              </figcaption>
+            </figure>
+          </div>
+          <p>
+            The final path of an example network considering Bellman-Ford
+            Algorithm.
+          </p>
+          <div class="col-lg-5 col-md-7 col-sm-8 mx-auto">
+            <figure class="figure text-center">
+              <img
+                src="{{url_for('static', filename='assets/bellman_final.png')}}"
+                class="img-fluid mx-auto d-block"
+              />
+              <figcaption class="fst-italic">
+                Bellman-Ford Algorithm Final Solution
+              </figcaption>
+            </figure>
+          </div>
+          <p>
+            <mark>
+              You can checkout the simulator through the <a href="/">editor</a>.
+              For further information on how to use the tool checkout out
+              <a href="/tutorial">tutorial</a>.
+            </mark>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
