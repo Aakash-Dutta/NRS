@@ -270,7 +270,12 @@ function draw() {
        * Upper Point towards the end node is (0,22)
        * and left right point are (-4,30) and (4,30)
        */
-      triangle(-4, 30, 4, 30, 0, 22);
+
+      if (width >= 768) {
+        triangle(-4, 30, 4, 30, 0, 22);
+      } else {
+        triangle(-4, 22, 4, 22, 0, 12);
+      }
 
       pop();
     }
@@ -351,7 +356,7 @@ function draw() {
     /**
      * Align the name of nodes based on their values(single & double digit numbers)
      */
-    if (windowWidth > 768) {
+    if (windowWidth >= 768) {
       if (i < 10) {
         text(i, nodes[i].x - 5, nodes[i].y + 5);
       } else if (i >= 10) {
@@ -359,9 +364,9 @@ function draw() {
       }
     } else {
       if (i < 10) {
-        text(i, nodes[i].x, nodes[i].y + 3);
+        text(i, nodes[i].x - 2.5, nodes[i].y + 3);
       } else if (i >= 10) {
-        text(i, nodes[i].x, nodes[i].y + 3);
+        text(i, nodes[i].x - 5, nodes[i].y + 3);
       }
     }
   }
@@ -415,19 +420,6 @@ function mousePressed() {
 function mouseReleased() {
   draggingNode = null;
 }
-
-// // For draggable node for mobile touches
-// function touchStarted() {
-//   for (let i = 0; i < nodes.length; i++) {
-//     if (dist(touch.x, touch.y, nodes[i].x, nodes[i].y) < radius) {
-//       draggingNode = i;
-//     }
-//   }
-// }
-
-// function touchEnded() {
-//   draggingNode = null;
-// }
 
 /**
  * Removes items from nodes and edges, also clears canvas

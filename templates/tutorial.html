@@ -31,7 +31,7 @@ content %}
             <li>
               <a href="#editing">Editing the Network</a>
               <ol type="a">
-                <li><a href="#state"></a>Graph State</li>
+                <li><a href="#state">Graph State</a></li>
                 <li><a href="#node">Add Node</a></li>
                 <li><a href="#edge">Add Edge</a></li>
                 <li><a href="#clear">Clear</a></li>
@@ -78,7 +78,7 @@ content %}
             will appear, asking for the start and end node respectively:
           </p>
 
-          <div class="col-lg-3 col-md-5 col-sm-4 mx-auto">
+          <div class="col-lg-5 col-md-8 col-sm-4 mx-auto">
             <figure class="figure text-center">
               <img
                 src="{{url_for('static', filename='assets/enter_start_node.png')}}"
@@ -87,7 +87,7 @@ content %}
               <figcaption class="fst-italic">Start Node Pop-up</figcaption>
             </figure>
           </div>
-          <div class="col-lg-3 col-md-8 col-sm-4 mx-auto">
+          <div class="col-lg-5 col-md-8 col-sm-4 mx-auto">
             <figure class="figure text-center">
               <img
                 src="{{url_for('static', filename='assets/enter_destination_node.png')}}"
@@ -205,17 +205,6 @@ content %}
       <!-- Editing the Network -->
       <div class="row mt-2">
         <div class="col-12 p-3">
-          <h4 id="clear">Clear</h4>
-          <p>Press the "Clear" button to wipe the network</p>
-          <div class="col-lg-3 col-md-5 col-sm-4 mx-auto">
-            <figure class="figure text-center">
-              <img
-                src="{{url_for('static', filename='assets/clear_button.png')}}"
-                class="img-fluid mx-auto d-block"
-              />
-              <figcaption class="fst-italic">Clear Button</figcaption>
-            </figure>
-          </div>
           <h4 id="state">Graph State</h4>
           There are two states for our network.
           <ul>
@@ -254,6 +243,15 @@ content %}
               </figcaption>
             </figure>
           </div>
+          <div class="col-12 mx-auto p-2 mt-1 border border-info mb-4">
+            <figure class="figure text-center">
+              <img
+                src="{{url_for('static', filename='assets/ToggleState.gif')}}"
+                class="img-fluid mx-auto d-block"
+              />
+              <figcaption class="fst-italic">Toggle State</figcaption>
+            </figure>
+          </div>
           <h4 id="node">Add Node</h4>
           <p>
             To add a node to the network, simply click on the "Add Node" button.
@@ -269,6 +267,17 @@ content %}
             </figure>
           </div>
           <p>You can also drag the nodes anywhere on the network editor.</p>
+          <div class="col-12 mx-auto p-2 mt-1 border border-info mb-4">
+            <figure class="figure text-center">
+              <img
+                src="{{url_for('static', filename='assets/DraggingNode.gif')}}"
+                class="img-fluid mx-auto d-block"
+              />
+              <figcaption class="fst-italic">
+                Adding Node & Dragging Feature
+              </figcaption>
+            </figure>
+          </div>
           <h4 id="edge">Add Edge</h4>
           <p>
             To create an edge, click the "Add Edge" Button. You will be provided
@@ -289,6 +298,29 @@ content %}
               >
             </li>
           </ul>
+          <div class="col-12 mx-auto p-2 mt-1 border border-info mb-4">
+            <figure class="figure text-center">
+              <img
+                src="{{url_for('static', filename='assets/AddingEdge.gif')}}"
+                class="img-fluid mx-auto d-block"
+              />
+              <figcaption class="fst-italic">Adding Edge</figcaption>
+            </figure>
+          </div>
+          <h4 id="clear">Clear</h4>
+          <p>Press the "Clear" button to wipe the network</p>
+          <div class="col-lg-3 col-md-5 col-sm-4 mx-auto">
+            <figure class="figure text-center">
+              <img
+                src="{{url_for('static', filename='assets/clear_button.png')}}"
+                class="img-fluid mx-auto d-block"
+              />
+              <figcaption class="fst-italic">Clear Button</figcaption>
+            </figure>
+          </div>
+
+          <hr class="" />
+          <p>Try out our <a href="/">editor</a>.</p>
         </div>
       </div>
     </div>
