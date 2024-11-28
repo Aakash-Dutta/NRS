@@ -3,7 +3,6 @@ from flask_socketio import emit, socketio
 global steps
 steps = []
 
-
 class Graph:
     def __init__(self, graph: dict ={}):
         self.graph = graph # A dictionary for the adjaceny list
@@ -196,6 +195,7 @@ def BellmanFord(graph,source, state):
             for neighbor, weight in graph[vertex].items():
                 if distances[vertex] + weight < distances[neighbor]:
                     print("Negative Cycle")
+                    emit('server_negCycle',{'data':'Stop'})
 
     print(steps)
     return distances, predecessors

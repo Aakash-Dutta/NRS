@@ -140,6 +140,17 @@ function runningAlgorithm(whichalgo) {
       }
     }
   });
+  socket.on("server_negCycle", function (msg) {
+    console.log(msg);
+    alert("Negative Cycle");
+    document.getElementById("messages").innerHTML = "Negative Cycle";
+    document
+      .getElementById("messages")
+      .classList.add("border", "border-2", "backColor");
+    document.getElementById("stepAlgorithm").setAttribute("disabled", "");
+    algo = "Final";
+    socket.emit("clearValues");
+  });
 
   socket.on("disconnect", function (reason, details) {
     console.log("Disconnected from server");

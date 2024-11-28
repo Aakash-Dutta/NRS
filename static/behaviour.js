@@ -433,7 +433,6 @@ function clearCanvas() {
 
   if (socket) {
     socket.emit("clearValues");
-    socket.close();
   }
 }
 
@@ -460,7 +459,6 @@ function exitSimulation() {
   console.log(nodes);
   if (socket) {
     socket.emit("clearValues");
-    socket.close();
   }
 
   document.getElementById("myForm").style.display = "none";

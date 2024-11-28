@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from flask_socketio import SocketIO, send, emit
+from flask_socketio import SocketIO, send, emit, disconnect
 import time
 from Algorithms import *
 
@@ -105,6 +105,9 @@ def handle_clear():
     current_step = 0
     global path
     path = []
+
+    disconnect() # close connection if established
+
 
 @socketio.on_error_default
 def default_error_handler(e):
