@@ -162,14 +162,6 @@ def Dijkstra(graph, source):
     return distances, predecessors
 
 
-# g = Graph()
-# g.add_edge('0','1',12)
-# g.add_edge('0','2',3)
-# g.add_edge('2','1',4)
-
-
-# print(g.shortest_path('0','1'))
-
 def BellmanFord(graph,source, state):
     # Initialize the values of all nodes with infinity
     distances = {node: float('inf') for node in graph}
