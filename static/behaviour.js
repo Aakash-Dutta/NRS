@@ -272,8 +272,10 @@ function draw() {
        */
 
       if (width >= 768) {
+        // large screen
         triangle(-4, 30, 4, 30, 0, 22);
       } else {
+        // small screen
         triangle(-4, 22, 4, 22, 0, 12);
       }
 
