@@ -192,8 +192,3 @@ def BellmanFord(graph,source, state):
     print(steps)
     return distances, predecessors
 
-
-# g = Graph()
-# g.add_edge('0','1',2)
-# g.add_edge('1','2',3)
-# g.bellman_calculation('2')

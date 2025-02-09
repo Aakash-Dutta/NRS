@@ -59,7 +59,7 @@ def handle_dijkstra(dataValues):
 
 
 @socketio.on('process_bellmanFord')
-def handle_dijkstra(dataValues):
+def handle_bellman(dataValues):
     print(dataValues)
 
     if(dataValues['state'] == 'Undirected'):
