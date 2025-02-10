@@ -24,7 +24,7 @@ class TestDijkstraAlgorithm(unittest.TestCase):
     def test_DijktraAlgoDirected(self):
         self.assertEqual(Dijkstra({'0': {'1': 3}, '1': {'2': 2}, '2': {'0': 2}},'0'),({'0': 0, '1': 3, '2': 5}, {'0': None, '1': '0', '2': '1'}))
 
-    # For shortest path returned by Dijkstra's Algorithm - Undirected Graph
+    # For shortest path returned by Dijkstra's Algorithm - directed Graph
     def test_DirectedGraphOutputTest(self):
         self.assertEqual(dg.shortest_path('0','2'),(['0','1','2']))
 
