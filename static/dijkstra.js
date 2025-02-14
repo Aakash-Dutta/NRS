@@ -18,7 +18,12 @@ function runDijkstra() {
       console.log("Prompt was cancelled.");
       socket.close();
       return 1;
+    } else if (destination == source) {
+      alert("Source and Destination are the same!!");
+      socket.close();
+      return 1;
     }
+
     destination = parseInt(destination);
   } while (
     isNaN(destination) ||
