@@ -14,10 +14,13 @@ let neighbourNode;
 let shortestPath = [];
 let whichalgo;
 let sourceOfBelmanFord;
+let destinationOfDijkstra;
 let trackBellmanFordCosts;
+let trackDijkstraCosts;
 let dateInital;
 let dateFinal;
 let stateChoosen = "Undirected";
+let algo_execution_duration;
 
 //
 let radius;
@@ -181,6 +184,7 @@ function setup() {
       document.getElementById("undirectedButton").classList.remove("active");
     });
 
+  document.getElementById("adjmessage").style.display = "none";
   // const myCanvas = document.getElementById("algorithm_colors");
   // const ctx = myCanvas.getContext("2d");
 
@@ -305,6 +309,16 @@ function draw() {
         fill(255, 255, abs(230 * cos(frameCount * 0.1)));
       } else if (algo == "Final") {
         if (whichalgo == "Dijkstra") {
+          // show final cost on screen
+          if (nodes[i].name == destinationOfDijkstra) {
+            strokeWeight(1);
+            text(
+              `Total Cost: ${trackDijkstraCosts}`,
+              nodes[i].x,
+              nodes[i].y - 30
+            );
+          }
+          // hihglight with green for shortest path
           for (let z = 0; z < shortestPath.length; z++) {
             if (nodes[i].name == shortestPath[z]) {
               fill(34, 153, 84);
@@ -475,6 +489,9 @@ function exitSimulation() {
   document.getElementById("stepAlgorithm").style.display = "none";
   document.getElementById("exitAlgorithm").style.display = "none";
   document.getElementById("additional-info").style.display = "none";
+  document.getElementById("adjmessage").style.display = "none";
+  document.getElementById("user_execution_time").innerHTML = "";
+  document.getElementById("algo_execution_time").innerHTML = "";
 
   // reset values of variables
   algo = "Not Running";
@@ -486,6 +503,7 @@ function exitSimulation() {
   nodes.forEach((node) => ((node.visited = false), (node.finalpath = false)));
   edges.forEach((edge) => (edge.visited = false));
 
+  document.getElementById("adjmessage").innerHTML = "";
   document.getElementById("messages").innerHTML = "";
   document
     .getElementById("messages")

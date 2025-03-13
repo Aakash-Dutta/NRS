@@ -21,6 +21,11 @@ class Graph:
 
         print(self.graph)
 
+        
+    def get_graph(self):
+        return self.graph
+    
+
     def shortest_path(self, source:str, target:str):
         _, predecessors = Dijkstra(self.graph, source)
 
@@ -154,6 +159,7 @@ def Dijkstra(graph, source):
             if distance < distances[neighbor]:
                 distances[neighbor] = distance
                 pq.insert(neighbor, distance)
+                
                 predecessors[neighbor] = current_node
                 print(distances, predecessors)
                 steps.append({'currentNode': current_node,'neighbor': neighbor,'dist': distances.copy(), 'pre': predecessors.copy()})

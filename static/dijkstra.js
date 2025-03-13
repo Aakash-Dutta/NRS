@@ -31,6 +31,8 @@ function runDijkstra() {
     destination > nodes.length - 1
   );
 
+  destinationOfDijkstra = destination; // used to highlight the final cost path in canvas
+
   generateTable(source);
 
   socket.emit("process_dijkstra", {

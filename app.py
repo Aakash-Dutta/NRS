@@ -51,10 +51,13 @@ def handle_dijkstra(dataValues):
         end = edge["end"]
         weight = edge["weight"]
         G.add_edge(str(start), str(end), weight)
+    emit('server_adjmessage',{'graph':G.get_graph()})
     global path
     start_time = time.perf_counter()
     path = G.shortest_path(str(dataValues['source']),str(dataValues['destination']))
-    print("Execution time: " + str((time.perf_counter()-start_time) * 1000)+ " ms")
+    execution_time = str(float("{:.3f}".format((time.perf_counter()-start_time) * 1000)))+" ms"
+    emit('exec_time',{'time': execution_time})
+    print("Execution time: "+ execution_time)
     print(path)
 
 
@@ -73,10 +76,13 @@ def handle_bellman(dataValues):
         end = edge["end"]
         weight = edge["weight"]
         G.add_edge(str(start), str(end), weight)
+    emit('server_adjmessage',{'graph':G.get_graph()})
     global path
     start_time = time.perf_counter()
     path = G.bellman_calculation(str(dataValues['source']))
-    print("Execution time: "+ str((time.perf_counter()-start_time) * 1000) +" ms")
+    execution_time = str(float("{:.3f}".format((time.perf_counter()-start_time) * 1000)))+" ms"
+    emit('exec_time',{'time': execution_time})
+    print("Execution time: "+ execution_time)
     print(path)
 
 

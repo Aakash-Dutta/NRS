@@ -22,6 +22,22 @@ function runningAlgorithm(whichalgo) {
   }
 
   if (r_value != 1) {
+    // show adjacency list in UI
+    socket.on("server_adjmessage", function (adjacency_list) {
+      console.log(adjacency_list);
+      document.getElementById("adjmessage").innerHTML =
+        "<p class='h3'>Adjacency List</p>";
+      var adjacency_list_value;
+      for (let node in adjacency_list.graph) {
+        adjacency_list_value = ` "${node}" : ${JSON.stringify(
+          adjacency_list.graph[node]
+        )}`;
+        document.getElementById("adjmessage").innerHTML +=
+          adjacency_list_value + "<br>";
+      }
+    });
+    document.getElementById("adjmessage").style.display = "block";
+
     document.getElementById("stepAlgorithm").style.display = "inline";
     document.getElementById("exitAlgorithm").style.display = "inline";
     disableChild = document
@@ -87,8 +103,17 @@ function runningAlgorithm(whichalgo) {
       console.log(
         "Simulation execution time: " + (dateFinal - dateInital) / 1000 + " sec"
       );
+      document.getElementById(
+        "user_execution_time"
+      ).innerHTML = `User Simulation Time: ${
+        (dateFinal - dateInital) / 1000
+      } sec`;
+      document.getElementById(
+        "algo_execution_time"
+      ).innerHTML = `Algorithm Execution Time: ${algo_execution_duration}`;
     } else {
       trackBellmanFordCosts = msg.dist; // used when the final step is returned: tracks the cost
+
       var previousTable = document.getElementById("algorithmTable");
       previousTable
         .querySelector("tbody")
@@ -100,6 +125,12 @@ function runningAlgorithm(whichalgo) {
         if (msg.pre[i] == null) {
           msg.pre[i] = "nil";
         }
+
+        // To track the final total cost for dijkstra
+        if (i == destinationOfDijkstra) {
+          trackDijkstraCosts = msg.dist[i];
+        }
+
         currentRow = previousTable.rows[i + 1];
 
         cellDistance = previousTable.rows[i + 1].cells[1];
@@ -140,6 +171,11 @@ function runningAlgorithm(whichalgo) {
       }
     }
   });
+  socket.on("exec_time", function (msg) {
+    console.log("Execution Time: " + msg.time);
+    algo_execution_duration = msg.time;
+  });
+
   socket.on("server_negCycle", function (msg) {
     console.log(msg);
     alert("Negative Cycle");
