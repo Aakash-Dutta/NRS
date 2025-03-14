@@ -21,10 +21,8 @@ class Graph:
 
         print(self.graph)
 
-        
     def get_graph(self):
         return self.graph
-    
 
     def shortest_path(self, source:str, target:str):
         _, predecessors = Dijkstra(self.graph, source)
@@ -63,6 +61,9 @@ class DirectedGraph:
             self.graph[node2]={}
 
         print(self.graph)
+
+    def get_graph(self):
+        return self.graph
 
     def shortest_path(self, source:str, target:str):
         _, predecessors = Dijkstra(self.graph, source)
